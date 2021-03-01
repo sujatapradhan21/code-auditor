@@ -1,4 +1,5 @@
 describe('Admin approves user', ()=>{
+
  function approveUser(numberOfUser: number) {
    for (let x = 0; x < numberOfUser; x++) {
      cy.get('button').contains(' Approve ').eq(0).click();
@@ -8,7 +9,7 @@ describe('Admin approves user', ()=>{
  }
   it('should approve pending user', ()=>{
     cy.visit('/auth/login');
-    cy.login('admin@admin.com','admin123');
+    cy.login('admin');
     cy.get('a').contains('Pending Approval').click();
     approveUser(3 )
 

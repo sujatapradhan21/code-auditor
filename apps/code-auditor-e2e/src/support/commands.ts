@@ -8,11 +8,11 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
-declare namespace Cypress {
-  interface Chainable<Subject> {
-    login(email: string, password: string): void;
-  }
-}
+// declare namespace Cypress {
+//   interface Chainable<Subject> {
+//     login(email: string, password: string): void;
+//   }
+// }
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => {
@@ -35,13 +35,28 @@ Cypress.Commands.add('datacy', (value) => {
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-Cypress.Commands.add('login',(email, password) => {
-  cy.clearCookies();
-  cy.clearLocalStorage();
+Cypress.Commands.add('login',(userType,email?:string, password?:string) => {
   cy.visit('/auth/login');
-  cy.datacy('email').type(email);
-  cy.datacy('password').type(password);
-  cy.contains('button','Login').click();
+  const types ={
+    admin: {
+      email: "admin@admin.com",
+      password: "admin123" ,
+    },
+
+    user: {
+      email: "",
+      password: ""
+    },
+
+    newUser: {
+      email: email,
+      password: password
+    }
+  };
+  const user = types[userType];
+  cy.datacy('email').type(user.email);
+  cy.datacy('password').type(user.password);
+  cy.get('button').contains('Login').click();
 })
 
 

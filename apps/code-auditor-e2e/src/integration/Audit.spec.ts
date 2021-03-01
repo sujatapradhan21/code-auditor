@@ -1,8 +1,10 @@
 import {Audit} from '../PageObject/pages/Audit';
 
 describe('Create an Audit', ()=>{
-  it.only('validate Add audit page',()=>{
-    cy.login('admin@admin.com','admin123');
+  beforeEach(()=>{
+    cy.login('admin');
+  })
+  it('validate Add audit page',()=>{
     cy.get('a').contains('Add Audit').click();
     cy.datacy('audit').find('mat-select').focus().blur();
     cy.get('span').contains('Auditee Required!');
@@ -26,5 +28,6 @@ describe('Create an Audit', ()=>{
   it('Admin adds an Audit', ()=>{
     Audit.auditAdd('hope','xodus',25);
   })
+
 
 })

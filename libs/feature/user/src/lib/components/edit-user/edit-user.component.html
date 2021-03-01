@@ -2,19 +2,19 @@
 <span *ngIf="(userState$ |async).userState as user" >
   <h1>Edit {{user.profileName}}</h1>
   <form [formGroup]="editUserForm" style="display: flex; flex-direction: column">
-    <mat-form-field appearance="outline" data-cy='fName'>
+    <mat-form-field appearance="outline" data-cy='firstName'>
       <mat-label>
         First Name
       </mat-label>
       <input matInput placeholder="Ex.Kam" formControlName="firstName">
     </mat-form-field>
-    <mat-form-field appearance="outline" data-cy='lName'>
+    <mat-form-field appearance="outline" data-cy='lastName'>
       <mat-label>
         Last Name
       </mat-label>
       <input matInput placeholder="ex. yoez" formControlName="lastName">
     </mat-form-field>
-    <mat-form-field appearance="outline" data-cy='pName'>
+    <mat-form-field appearance="outline" data-cy='profileName'>
       <mat-label>
         Profile Name
       </mat-label>

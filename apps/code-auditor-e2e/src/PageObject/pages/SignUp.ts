@@ -9,8 +9,7 @@ export class SignUp{
     cy.datacy('role').click();
     cy.datacy('option').contains(option).click();
     cy.get('button').contains('Register').click();
-    cy.wait(5000);
-    //cy.get('snack-bar-container').should('contain','registered successfully');
+    cy.contains('registered successfully');
     cy.url().should('include','auth/login');
   }
 
